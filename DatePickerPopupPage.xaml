@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="TaskManager.DatePickerPopupPage">
+
+    <StackLayout Padding="20" HorizontalOptions="Center" VerticalOptions="Center">
+        <DatePicker x:Name="datePicker" />
+        <Button Text="Confirm" Clicked="OnConfirmClicked" />
+    </StackLayout>
+</popup:PopupPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaskManager.MainPage"
+             BackgroundColor="#121212"
+             Title="Task Manager">
+
+    <StackLayout Padding="10">
+        
+        <!-- Header -->
+        <Label Text="My Tasks" FontSize="Large" HorizontalOptions="Center" TextColor="White" />
+        
+        <!-- Task entry section -->
+        <Entry x:Name="taskEntry" Placeholder="Enter new task..." PlaceholderColor="Gray" TextColor="White" Margin="0,20,0,0" />
+        
+        <!-- Task buttons -->
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Text="Add Task" x:Name="btnAddTask" HeightRequest="70" BackgroundColor="#A0910A" TextColor="White" Clicked="btnAddTask_Clicked" />
+            <Button Grid.Column="1" Text="Sort" Clicked="SortTasks_Clicked" HeightRequest="70" BackgroundColor="#A0910A" TextColor="White" />
+        </Grid>
+        
+        <!-- Search bar -->
+        <SearchBar x:Name="searchBar" Placeholder="Search tasks..." TextChanged="searchBar_TextChanged" PlaceholderColor="Gray" TextColor="White" Margin="0,20,0,0" />
+
+        <!-- Task list section -->
+        <ListView x:Name="lstTasks" BackgroundColor="#373E91" SeparatorColor="Gray">
+            <!-- Data template -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding TaskName}" Grid.Column="0" VerticalOptions="Center" TextColor="White" />
+                            <Label Text="{Binding Priority}" Grid.Column="1" VerticalOptions="Center" TextColor="White" />
+                            <Button Text="-" Clicked="DecreasePrio_Clicked" CommandParameter="{Binding .}" Grid.Column="2" WidthRequest="30" Padding="0" BackgroundColor="#A0910A" TextColor="White" />
+                            <Button Text="+" Clicked="IncreasePrio_Clicked" CommandParameter="{Binding .}" Grid.Column="3" WidthRequest="30" Padding="0" BackgroundColor="#A0910A" TextColor="White" />
+                            <Button Text="🔔" Clicked="SetReminder_Clicked" CommandParameter="{Binding .}" Grid.Column="4" WidthRequest="30" Padding="0" BackgroundColor="#A0910A" />
+                            <Button Text="❌" Clicked="DeleteTask_Clicked" CommandParameter="{Binding .}" Grid.Column="5" WidthRequest="30" Padding="0" BackgroundColor="#A0910A" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <!-- Pomodoro timer section -->
+        <StackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="10">
+            <Label Text="Pomodoro Timer:" HorizontalOptions="Center" FontSize="Medium" TextColor="White" />
+            <Label x:Name="pomodoroLabel" Text="25:00" HorizontalOptions="Center" FontSize="Large" TextColor="White" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Start" Clicked="StartPomodoroTimer" BackgroundColor="#A0910A" TextColor="White" />
+                <Button Text="Pause" Clicked="PausePomodoroTimer" BackgroundColor="#A0910A" TextColor="White" />
+                <Button Text="Reset" Clicked="ResetPomodoroTimer"  BackgroundColor="#A0910A" TextColor="White" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+    
+
+</ContentPage>
